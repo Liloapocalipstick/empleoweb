@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a job portal web application built with React, Express.js, and PostgreSQL. The platform serves two types of users: job seekers who can browse and apply for jobs, and employers who can post job openings and manage applications. The application features user authentication, job search functionality with filters, application management, and a comprehensive dashboard for both user types.
+This is a full-stack job portal web application that connects job seekers with employers. Built with modern web technologies, the platform allows job seekers to browse and apply for positions while enabling employers to post jobs and manage applications. The application features user authentication, role-based access control, advanced job filtering, and a comprehensive dashboard system for both user types.
 
 ## User Preferences
 
@@ -11,67 +11,59 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React with TypeScript, using Vite as the build tool
-- **Routing**: Wouter for client-side routing with pages for home, login, register, dashboard, and job details
-- **UI Components**: Shadcn/ui component library with Radix UI primitives for accessibility
-- **Styling**: Tailwind CSS with custom CSS variables for theming and responsive design
-- **State Management**: TanStack Query (React Query) for server state management and caching
-- **Forms**: React Hook Form with Zod for validation and type safety
+- **Framework**: React with TypeScript using Vite as the build tool for fast development and optimized production builds
+- **Routing**: Wouter for lightweight client-side routing with pages for home, login, register, dashboard, and job details
+- **UI Components**: Shadcn/ui component library built on Radix UI primitives, providing accessible and customizable components
+- **Styling**: Tailwind CSS with CSS variables for consistent theming, responsive design, and dark/light mode support
+- **State Management**: TanStack Query (React Query) for efficient server state management, caching, and background updates
+- **Form Handling**: React Hook Form with Zod validation for type-safe form processing and runtime validation
+- **Design System**: Consistent component variants using class-variance-authority and centralized utility functions
 
 ### Backend Architecture
-- **Framework**: Express.js with TypeScript running in ESM mode
-- **Database ORM**: Drizzle ORM for type-safe database operations and migrations
-- **Authentication**: JWT-based authentication with bcryptjs for password hashing
-- **API Design**: RESTful API structure with middleware for authentication and logging
-- **Error Handling**: Centralized error handling middleware with structured error responses
+- **Framework**: Express.js with TypeScript running in ESM mode for modern JavaScript features
+- **Database ORM**: Drizzle ORM providing type-safe database operations, automatic migrations, and PostgreSQL integration
+- **Authentication**: JWT-based stateless authentication with bcryptjs for secure password hashing
+- **API Design**: RESTful API structure with middleware for authentication, logging, and error handling
+- **Error Handling**: Centralized error handling middleware with structured error responses and proper HTTP status codes
+- **Development Tools**: Custom Vite integration for hot module replacement and development server proxy
 
 ### Database Design
-- **Users Table**: Stores user credentials and profile information with user type differentiation
-- **Companies Table**: Company information linked to employer users
-- **Jobs Table**: Job postings with detailed information including salary ranges and skills
-- **Applications Table**: Job applications linking users to jobs with status tracking
-- **Relationships**: Proper foreign key relationships between all entities for data integrity
+- **Users Table**: Stores authentication credentials and profile information with role differentiation (job_seeker vs employer)
+- **Companies Table**: Company profiles linked to employer users with industry and contact information
+- **Jobs Table**: Detailed job postings with location, salary ranges, required skills, and employment types
+- **Applications Table**: Job applications linking users to jobs with status tracking and cover letters
+- **Relationships**: Proper foreign key constraints maintaining data integrity across all entities
+- **Schema Validation**: Shared Zod schemas between frontend and backend ensuring consistent data validation
 
 ### Authentication & Authorization
-- **Registration/Login**: Separate endpoints for user registration and authentication
-- **JWT Tokens**: Stateless authentication using JSON Web Tokens
-- **Role-based Access**: User type differentiation (job_seeker vs employer) for feature access
-- **Protected Routes**: Middleware-based route protection for authenticated endpoints
+- **Registration System**: Separate workflows for job seekers and employers with role-based registration
+- **JWT Implementation**: Stateless authentication using JSON Web Tokens with configurable secret keys
+- **Route Protection**: Middleware-based authentication for protected API endpoints
+- **Role-Based Access**: User type differentiation controlling feature access and UI components
+- **Session Management**: Client-side token storage with automatic logout on token expiration
 
 ### Data Storage Strategy
-- **Development Storage**: In-memory storage implementation for rapid development and testing
-- **Production Ready**: Drizzle ORM configuration for PostgreSQL with proper migration support
-- **Schema Validation**: Zod schemas for runtime type checking and API validation
-- **Type Safety**: Shared TypeScript types between frontend and backend
+- **Development Mode**: In-memory storage implementation for rapid development and testing without database dependencies
+- **Production Database**: PostgreSQL with Neon Database serverless configuration for scalable cloud deployment
+- **Migration System**: Drizzle Kit for database schema migrations and version control
+- **Type Safety**: End-to-end TypeScript types shared between client, server, and database layers
 
 ## External Dependencies
 
 ### Database
-- **PostgreSQL**: Primary database using Neon Database serverless PostgreSQL
-- **Drizzle ORM**: Type-safe database operations with automatic migration generation
+- **Neon Database**: Serverless PostgreSQL database with connection pooling and automatic scaling
+- **Drizzle ORM**: Modern TypeScript ORM with automatic type generation and migration support
 
-### UI/UX Libraries
-- **Radix UI**: Accessible, unstyled UI primitives for complex components
-- **Tailwind CSS**: Utility-first CSS framework with custom design tokens
-- **Lucide React**: Icon library for consistent iconography
-- **React Icons**: Additional icon sets including social media icons
+### UI & Styling
+- **Radix UI**: Accessible component primitives for complex UI interactions
+- **Tailwind CSS**: Utility-first CSS framework with custom design tokens and responsive utilities
+- **Lucide Icons**: Consistent iconography throughout the application
 
 ### Development Tools
-- **TypeScript**: Full type safety across the entire application
-- **ESBuild**: Fast bundling for production builds
-- **PostCSS**: CSS processing with Tailwind and Autoprefixer
+- **Vite**: Fast build tool with hot module replacement and optimized production bundles
+- **TypeScript**: Full type safety across the entire stack with strict compiler options
+- **Replit Integration**: Custom development environment setup with error overlays and debugging tools
 
 ### Authentication & Security
-- **bcryptjs**: Password hashing for secure user authentication
-- **jsonwebtoken**: JWT token generation and verification
-
-### Date/Time Handling
-- **date-fns**: Modern date utility library with internationalization support
-
-### Form Management
-- **React Hook Form**: Performant form library with minimal re-renders
-- **Hookform Resolvers**: Integration with Zod for schema validation
-
-### Deployment
-- **Replit**: Configured for Replit deployment with development tools
-- **Environment Variables**: DATABASE_URL and JWT_SECRET for configuration
+- **bcryptjs**: Secure password hashing with configurable salt rounds
+- **jsonwebtoken**: JWT token generation and verification for stateless authentication
