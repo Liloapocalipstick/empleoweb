@@ -26,6 +26,18 @@ function authenticateToken(req: any, res: any, next: any) {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for Render
+  app.get("/", (req, res) => {
+    res.json({ 
+      status: "ok", 
+      message: "Job Portal API is running",
+      timestamp: new Date().toISOString()
+    });
+  });
+
+  app.get("/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
   // Auth routes
   app.post("/api/auth/register", async (req, res) => {
     try {
