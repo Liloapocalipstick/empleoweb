@@ -5,7 +5,7 @@ import { insertUserSchema, loginSchema, insertJobSchema, insertApplicationSchema
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
+const JWT_SECRET = process.env.JWT_SECRET || "temporary-dev-secret-please-change-in-production";
 
 // Middleware to verify JWT token
 function authenticateToken(req: any, res: any, next: any) {
@@ -98,13 +98,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/jobs", async (req, res) => {
     try {
       const filters = {
-        search: req.query.search as string,
-        location: req.query.location as string,
-        jobType: req.query.jobType as string,
-        experienceLevel: req.query.experienceLevel as string,
-        minSalary: req.query.minSalary ? parseInt(req.query.minSalary as string) : undefined,
-        maxSalary: req.query.maxSalary ? parseInt(req.query.maxSalary as string) : undefined,
-        skills: req.query.skills ? (req.query.skills as string).split(',') : undefined,
+        search: req.query.search ? String(req.query.search) : undefined,
+        location: req.query.location ? String(req.query.location) : undefined,
+        jobType: req.query.jobType ? String(req.query.jobType) : undefined,
+        experienceLevel: req.query.experienceLevel ? String(req.query.experienceLevel) : undefined,
+        minSalary: req.query.minSalary ? Math.max(0, parseInt(String(req.query.minSalary)) || 0) : undefined,
+        maxSalary: req.query.maxSalary ? Math.max(0, parseInt(String(req.query.maxSalary)) || 0) : undefined,
+        skills: req.query.skills ? String(req.query.skills).split(',').filter(skill => skill.trim()) : undefined,
       };
       
       const jobs = await storage.getJobs(filters);

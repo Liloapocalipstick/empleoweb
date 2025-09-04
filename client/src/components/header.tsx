@@ -33,10 +33,8 @@ export default function Header() {
               </div>
             </Link>
             <nav className="hidden md:flex space-x-6">
-              <Link href="/">
-                <a className="text-foreground hover:text-primary transition-colors font-medium" data-testid="nav-jobs">
-                  Empleos
-                </a>
+              <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="nav-jobs">
+                Empleos
               </Link>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="nav-companies">
                 Empresas
@@ -45,10 +43,8 @@ export default function Header() {
                 Salarios
               </a>
               {user?.userType === 'employer' && (
-                <Link href="/dashboard">
-                  <a className="text-muted-foreground hover:text-primary transition-colors" data-testid="nav-dashboard">
-                    Panel de Control
-                  </a>
+                <Link href="/dashboard" className="text-muted-foreground hover:text-primary transition-colors" data-testid="nav-dashboard">
+                  Panel de Control
                 </Link>
               )}
             </nav>
@@ -101,10 +97,8 @@ export default function Header() {
         {showMobileMenu && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-2">
-              <Link href="/">
-                <a className="text-foreground hover:text-primary transition-colors font-medium py-2" data-testid="mobile-nav-jobs">
-                  Empleos
-                </a>
+              <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium py-2" data-testid="mobile-nav-jobs">
+                Empleos
               </Link>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors py-2" data-testid="mobile-nav-companies">
                 Empresas
@@ -113,10 +107,8 @@ export default function Header() {
                 Salarios
               </a>
               {user?.userType === 'employer' && (
-                <Link href="/dashboard">
-                  <a className="text-muted-foreground hover:text-primary transition-colors py-2" data-testid="mobile-nav-dashboard">
-                    Panel de Control
-                  </a>
+                <Link href="/dashboard" className="text-muted-foreground hover:text-primary transition-colors py-2" data-testid="mobile-nav-dashboard">
+                  Panel de Control
                 </Link>
               )}
             </nav>

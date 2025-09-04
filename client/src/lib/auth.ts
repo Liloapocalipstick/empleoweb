@@ -10,14 +10,21 @@ class AuthService {
   private user: User | null = null;
 
   constructor() {
-    this.token = localStorage.getItem('auth_token');
-    const savedUser = localStorage.getItem('auth_user');
-    if (savedUser) {
-      try {
-        this.user = JSON.parse(savedUser);
-      } catch {
-        this.clearAuth();
+    try {
+      this.token = localStorage.getItem('auth_token');
+      const savedUser = localStorage.getItem('auth_user');
+      if (savedUser) {
+        try {
+          this.user = JSON.parse(savedUser);
+        } catch {
+          this.clearAuth();
+        }
       }
+    } catch (error) {
+      // localStorage might not be available or might be full
+      console.warn('localStorage not available:', error);
+      this.token = null;
+      this.user = null;
     }
   }
 

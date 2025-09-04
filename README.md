@@ -1,6 +1,60 @@
-# Portal de Empleos
+# Job Portal
 
-Portal integral de empleos construido con React, Express.js y PostgreSQL.
+Una aplicación web moderna para búsqueda de empleos construida con React, Express.js y PostgreSQL.
+
+## Características
+
+- 🔍 Búsqueda avanzada de empleos con filtros
+- 👥 Sistema de autenticación para empleadores y buscadores de empleo
+- 📋 Panel de control para gestión de empleos y aplicaciones
+- 💼 Perfiles de empresa
+- 📱 Diseño responsive
+- 🔒 Autenticación segura con JWT
+
+## Deploy en Render
+
+Esta aplicación está lista para deploy en Render:
+
+1. Conecta tu repositorio GitHub a Render
+2. Crea un nuevo Web Service
+3. Render detectará automáticamente la configuración del archivo `render.yaml`
+4. Las variables de entorno se configurarán automáticamente
+
+### Variables de entorno requeridas en Render:
+- `JWT_SECRET`: Se genera automáticamente
+- `DATABASE_URL`: Se configura automáticamente con la base de datos PostgreSQL
+- `NODE_ENV`: Se configura como "production"
+
+## Instalación para desarrollo local
+
+1. Clona el repositorio:
+```bash
+git clone <tu-repo>
+cd job-portal
+```
+
+2. Instala las dependencias:
+```bash
+npm install
+```
+
+3. Configura las variables de entorno:
+```bash
+cp .env.example .env
+```
+Edita `.env` con tus valores.
+
+4. Inicia la aplicación:
+```bash
+npm run dev
+```
+
+## Scripts disponibles
+
+- `npm run dev` - Desarrollo
+- `npm run build` - Construcción
+- `npm start` - Producción
+- `npm run check` - Verificación TypeScript
 
 ## Overview
 
