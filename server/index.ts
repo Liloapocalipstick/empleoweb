@@ -47,6 +47,15 @@ app.use((req, res, next) => {
     res.status(status).json({ message });
   });
 
+  // Health check endpoint for Render - must be after API routes but before static
+  app.get("/health", (req, res) => {
+    res.json({ 
+      status: "ok", 
+      message: "Job Portal API is running",
+      timestamp: new Date().toISOString()
+    });
+  });
+
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
